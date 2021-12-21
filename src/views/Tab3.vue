@@ -15,7 +15,7 @@
             </ion-avatar>
             <ion-label>นายธนกฤต แก้วพินิจ</ion-label>
           </ion-item>
-          <ion-item-options slot="end">
+          <ion-item-options slot ="end">
             <ion-item-option>เพิ่มเติม</ion-item-option>
           </ion-item-options>
         </ion-item-sliding>
