@@ -92,6 +92,7 @@ import {
   IonContent,
 } from "@ionic/vue";
 import axios from "axios";
+
 export default {
   name: "Tab3",
   components: {
@@ -127,6 +128,7 @@ export default {
         message: tel,
         buttons: ["OK"],
       });
+
       await alert.present();
     },
     async allCustomer() {
@@ -155,12 +157,15 @@ export default {
               tel: this.tel.trim(),
             } 
           );
+
           this.clearInput();
+
           const alert = await alertController.create({
             header: "สำเร็จ",
             message: res.data.message,
             buttons: ["OK"],
           });
+
           await alert.present();
           this.allCustomer();
         } catch (error) {
