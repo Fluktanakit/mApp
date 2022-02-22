@@ -155,13 +155,12 @@ export default {
                 // console.log("product_name : " + data.product_name);
                 // console.log("product_price : " + data.product_price);
 
-                await axios
-                  .post("http://localhost:3000/mongo/products", data)
-                  .then(function (res) {
-                    console.log(res.data.message);
-                  });
+                await axios.post("http://localhost:3000/mongo/products", data)
 
-                  this.allProduct();
+                  setTimeout(() => {
+                     this.allProduct();
+                  }, 1000);
+                 
               } else {
                 console.log("กรุณากรอกข้อมูลให้ครบถ้วน");
                 this.checkinput();

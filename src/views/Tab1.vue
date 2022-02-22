@@ -1,40 +1,67 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>หน้าหลัก</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content :fullscreen="true">
-     
-      <ion-grid>
-        <ion-row>
-          <ion-col >
-            <ion-button color="light" size="small">button1</ion-button>
-          </ion-col>
-          <ion-col>
-            <ion-button color="dark"  expand="block">button2</ion-button>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-button color="tertiary" size="large" expand="full">button3</ion-button>
-          </ion-col>
-          <ion-col>
-            <ion-button color="medium" size="small" shape="round" fill="outline">button4</ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-
-      
-    </ion-content>
-  </ion-page>
+  <section>
+    <img :src="picture" ><br />
+    <h1>ชื่อ-นามสกุล : {{ getFullName }}</h1>
+    <h1>อายุ : {{ age }} ปี</h1>
+    <h1>ตำแหน่งงาน : นักศึกษา</h1>
+    <button @click="toggleVisible">{{ isVisible ? "ซ่อน" : "แสดง"}}รายละเอียด</button>
+    <article v-show="isVisible">
+      <p>ที่อยู่ : <span v-html="address"></span></p>
+      <p>Social : <a :href="social" target="_blank">Facebook</a></p>
+      <p v-if="hobby.length === 0">ไม่มีงานอดิเรก</p>
+      <div v-else>
+        <p>งานอดิเรก :</p>
+        <ul>
+          <li v-for="(item, index) in hobby" :key="index">{{ item }}</li>
+        </ul>
+      </div>
+      <p>ข้อมูลพื้นฐาน :</p>
+      <ul>
+        <li v-for="(item, key) in general" :key="key">{{ item }}</li>
+      </ul>
+    </article>
+  </section>
 </template>
 
-<script lang="ts">
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonGrid, IonRow, IonCol } from '@ionic/vue';
-export default  {
-  name: 'Tab1',
-  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonButton, IonGrid, IonRow, IonCol }
-}
+<script>
+export default {
+  name: "App",
+  data() {
+    return {
+      firstName: "tanakit",
+      lastName: "keawpinit",
+      age: 21,
+      address: "<i>พิษณุโลก</i>",
+      picture:"https://drive.google.com/file/d/1h6o3o2PYQywgvgK2igQmAlY413BOHI3v/view?usp=sharing",
+      size: 150,
+      social: "https://www.facebook.com/tanakit42171",
+      hobby: [
+        "เล่นเกม",
+        "ทำอาหาร",
+        "นอน",
+        "เลี้ยงแมว",
+      ],
+      general: { gender: "ชาย", weight: 81, height: 170, status: false },
+      isVisible:false,
+    };
+  },
+  methods: {
+    toggleVisible(){
+        this.isVisible = !this.isVisible
+    },
+    addSalary(value){
+        this.salary+=value
+    }
+  },
+  computed:{
+    getFullName() {
+        return `${this.firstName}  ${this.lastName}`;
+    },
+    getIncome(){
+        return this.salary * 12;
+    },
+  }
+};
 </script>
+
+<style></style>
